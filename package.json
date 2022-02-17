@@ -1,21 +1,43 @@
 {
   "name": "sea-of-food",
   "version": "1.0.0",
-  "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "start": "expo start --dev-client",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
     "web": "expo start --web",
     "eject": "expo eject"
   },
   "dependencies": {
+    "@gorhom/bottom-sheet": "^4",
+    "@motify/components": "^0.17.1",
+    "@react-navigation/native": "*",
+    "@react-navigation/native-stack": "*",
     "expo": "~44.0.0",
+    "expo-av": "~10.2.0",
+    "expo-image-picker": "~12.0.1",
+    "expo-splash-screen": "~0.14.1",
     "expo-status-bar": "~1.2.0",
+    "expo-updates": "^0.11.6",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "0.64.3",
-    "react-native-web": "0.17.1"
+    "react-native-animated-loader": "^0.0.9",
+    "react-native-draggable-view": "^0.0.6",
+    "react-native-gesture-handler": "~2.1.0",
+    "react-native-image-picker": "^4.7.3",
+    "react-native-media-controls": "^2.1.0",
+    "react-native-paper": "^4.11.2",
+    "react-native-reanimated": "~2.3.1",
+    "react-native-safe-area-context": "*",
+    "react-native-screens": "*",
+    "react-native-slider": "^0.11.0",
+    "react-native-user-avatar": "^1.0.8",
+    "react-native-vector-icons": "^9.1.0",
+    "react-native-video": "^5.2.0",
+    "react-native-video-player": "^0.12.0",
+    "react-native-web": "0.17.1",
+    "react-native-youtube-iframe": "^2.2.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
