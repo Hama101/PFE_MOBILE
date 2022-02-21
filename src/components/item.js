@@ -10,12 +10,12 @@ export const CARD_WIDTH = width * 0.8;
 export const CARD_HEIGHT = CARD_WIDTH * ratio;
 export const STEPS = 10;
 
-export  default function Item ({ item, onPress, backgroundColor, textColor }) {
+export default function Item({ item, onPress, backgroundColor, textColor }) {
     return (
         <View>
             <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
-                <Image style={styles.card} source={{ uri: item.src }} />
-                <Progress step={item.percentage * 10} steps={STEPS} height={20} name={item.title} />
+                <Image style={styles.card} source={{ uri: item.image }} />
+                <Progress step={Number(item.percentage * 10).toFixed(1)} steps={STEPS} height={20} name={item.name} />
             </TouchableOpacity>
         </View>
     );

@@ -6,7 +6,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { MotiView } from '@motify/components'
 import LoadingIndicator from '../components/LoadingIndicator';
 import { uploadImage } from '../controllers/axios';
-
+import TopBtns from '../components/TopBtns';
 const CAMBTNWID = 150;
 const GALBTNWID = 60;
 
@@ -77,38 +77,7 @@ export default function Home(navigation) {
     const RenderBtns = () => {
         return (
             <>
-                <View style={styles.topBtns}>
-                    <IconButton
-                        icon="info"
-                        size={30}
-                        onPress={() => handelButtonClick("camera")}
-                        color="#F6F6F6"
-                        style={{
-                            width: 40,
-                            height: 40,
-                            alignSelf: 'center',
-                            borderRadius: 100,
-                            //allgin this item to the to right of the screen
-                            left: -150,
-                            top: 20,
-                        }}
-                    />
-                    <IconButton
-                        icon="history"
-                        size={30}
-                        onPress={() => handelButtonClick("camera")}
-                        color="#F6F6F6"
-                        style={{
-                            width: 40,
-                            height: 40,
-                            alignSelf: 'center',
-                            borderRadius: 100,
-                            //allgin this item to the to right of the screen
-                            right: -150,
-                            top: 20,
-                        }}
-                    />
-                </View>
+                <TopBtns />
                 <View style={styles.container}>
                     <MotiView
                         from={{
@@ -205,12 +174,5 @@ const styles = StyleSheet.create({
     },
     btnGalContainer: {
         //
-    },
-    topBtns: {
-        //allgin this item to the top of the screen
-        position: 'relative',
-        top: 0,
-        // allgin it child elements to the same line
-        flexDirection: 'row',
     },
 });

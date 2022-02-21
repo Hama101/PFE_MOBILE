@@ -1,9 +1,9 @@
 import React, { useCallback, useState, useRef, useMemo } from 'react';
 import { StyleSheet, Dimensions, View, StatusBar, Image, SafeAreaView, TouchableOpacity, FlatList } from 'react-native';
 import LoadingIndicator from '.././components/LoadingIndicator';
-import { Video, AVPlaybackStatus } from 'expo-av';
+import VedioPlayer from '../components/VedioPlayer';
 const { width, height } = Dimensions.get('screen')
-
+import TopBtns from '../components/TopBtns';
 //fetching images or vedio from api
 const vid_url = "https://www.pexels.com/video/food-pizza-hands-friends-3944334/"
 const fetchData = async (keyword) => {
@@ -21,13 +21,12 @@ const THUMBNAIL_SIZE = 80;
 const SPACEING = 10;
 
 export default function VedioList({ navigation, route }) {
-    const video = React.useRef(null);
-    const [status, setStatus] = React.useState({});
+
     const item = route.params.item
     const [images, setImages] = useState(null)
     React.useEffect(() => {
         const fetchImages = async () => {
-            const images = await fetchData(item.title);
+            const images = await fetchData(item.name);
             //console.log("************************************\n************************\n*********\n", images);
             setImages(images)
         }
@@ -64,6 +63,7 @@ export default function VedioList({ navigation, route }) {
     }
     return (
         <SafeAreaView style={styles.container}>
+            <TopBtns />
             <FlatList
                 ref={topRef}
                 data={images}
@@ -77,23 +77,10 @@ export default function VedioList({ navigation, route }) {
                 renderItem={({ item }) => (
                     <View style={{ width, height }}>
                         {
-                            <Image source={{ uri: item.src.portrait }}
-                                style={[StyleSheet.absoluteFillObject]}
-                                play={true}
-                                videoId={'668nUCeBHyY'}
-                            />
-                            /* <Video
-                                style={[StyleSheet.absoluteFillObject]}
-                                ref={video}
-                                source={{
-                                    uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
-                                }}
-                                useNativeControls
-                                resizeMode="contain"
-                                isLooping
-                                onPlaybackStatusUpdate={status => setStatus(() => status)}
-                                paused={false}
-                            /> */
+                            // <Image source={{ uri: item.src.portrait }}
+                            //     style={[StyleSheet.absoluteFillObject]}
+                            // />
+                            <VedioPlayer src={"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"} />
                         }
                     </View>
                 )}
@@ -154,4 +141,5 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginTop: '50%',
     },
+
 })

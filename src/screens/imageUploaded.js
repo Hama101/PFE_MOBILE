@@ -14,7 +14,7 @@ export default function ImageUploaded({ navigation, route }) {
             <SafeAreaView style={styles.uploadedImgHoler}>
                 <Image source={{ uri: imgUri }} style={styles.uploadedImg} />
                 <Text style={styles.name}>Our Predictions</Text>
-                <Avatars navigation={navigation} uri={imgUri} style={styles.holder} />
+                <Avatars navigation={navigation} data={data} style={styles.holder} />
             </SafeAreaView>
         </SafeAreaView >
     )

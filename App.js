@@ -33,7 +33,7 @@ export default function App() {
         }}>
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="ImageUploaded" component={ImageUploaded} />
-          <Stack.Screen name="VedioList" component={VedioList} />
+          <Stack.Screen name="VedioList" component={VedioList} options={{ orientation: 'all' }} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>
