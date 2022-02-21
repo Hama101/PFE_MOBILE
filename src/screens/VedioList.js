@@ -76,23 +76,25 @@ export default function VedioList({ navigation, route }) {
                 }}
                 renderItem={({ item }) => (
                     <View style={{ width, height }}>
-                        {/* <Image source={{ uri: item.src.portrait }}
-                            style={[StyleSheet.absoluteFillObject]}
-                            play={true}
-                            videoId={'668nUCeBHyY'}
-                        /> */}
-                        <Video
-                            style={[StyleSheet.absoluteFillObject]}
-                            ref={video}
-                            source={{
-                                uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
-                            }}
-                            useNativeControls
-                            resizeMode="contain"
-                            isLooping
-                            onPlaybackStatusUpdate={status => setStatus(() => status)}
-                            paused={false}
-                        />
+                        {
+                            <Image source={{ uri: item.src.portrait }}
+                                style={[StyleSheet.absoluteFillObject]}
+                                play={true}
+                                videoId={'668nUCeBHyY'}
+                            />
+                            /* <Video
+                                style={[StyleSheet.absoluteFillObject]}
+                                ref={video}
+                                source={{
+                                    uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
+                                }}
+                                useNativeControls
+                                resizeMode="contain"
+                                isLooping
+                                onPlaybackStatusUpdate={status => setStatus(() => status)}
+                                paused={false}
+                            /> */
+                        }
                     </View>
                 )}
             />

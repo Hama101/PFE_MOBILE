@@ -1,10 +1,12 @@
 import React, { useCallback, useState, useRef, useMemo } from 'react';
-import { StyleSheet, Text, View, StatusBar, Image , SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, Image, SafeAreaView } from 'react-native';
 import Avatars from '.././components/avatars';
 
 export default function ImageUploaded({ navigation, route }) {
     const [imgUri, setImageUri] = useState(route.params.imgUri);
+    const [data, setData] = useState(route.params.data);
     console.log("imgUri", imgUri);
+    console.log("Data --->", data)
     // create a avatar compeonent
 
     return (

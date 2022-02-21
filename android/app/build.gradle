@@ -1,5 +1,8 @@
 apply plugin: "com.android.application"
-
+project.ext.vectoricons = [
+    iconFontNames: [ 'MaterialIcons.ttf', 'EvilIcons.ttf' ] // Name of the font files you want to copy
+]
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 import com.android.build.OutputFile
 
 /**
@@ -231,6 +234,8 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+    compile project(':react-native-vector-icons')
+    implementation project(':lottie-react-native')
 }
 
 // Run this once to be able to run the application with BUCK

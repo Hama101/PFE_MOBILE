@@ -30,7 +30,7 @@ export default function Progress({ step, steps, height, name }) {
                 <Text style={styles.name}>
                     {name}
                 </Text>
-                <Text style={{ fontSize: 12, fontWeight: "900", color: '#fff', }}>
+                <Text style={{ fontSize: 12, fontWeight: "900", color: '#F6F6F6', }}>
                     {step * 10} %
                 </Text>
             </View>
