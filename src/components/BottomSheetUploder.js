@@ -2,15 +2,15 @@ import React, { useCallback, useState, useRef, useMemo } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { IconButton, Colors } from 'react-native-paper';
 import * as ImagePicker from 'expo-image-picker';
-import {MotiView} from '@motify/components'
+import { MotiView } from '@motify/components'
 
-export default function BottomSheetUploder(props) {
+export default function BottomSheetUploder({ navigation, route }) {
     // handelling the loading animation
     const [isLoading, setIsLoading] = useState(false);
     const LoadingIndicator = ({ size }) => {
         return (
             <MotiView
-            
+
             />
         );
     };
@@ -22,7 +22,7 @@ export default function BottomSheetUploder(props) {
             setIsLoading(false);
         }, 5000);
     };
-    console.log("aaaa", props.navigation.navigation);
+    console.log("aaaa", navigation);
     const handelButtonClick = async (type) => {
         let result;
         if (type === "Camera") {
@@ -43,7 +43,7 @@ export default function BottomSheetUploder(props) {
         console.log(result);
         handleLoading();
         // godwa rak wsalit lil navigation xD !!!
-        props.navigation.navigation.navigate("ImageUploaded", { imgUri: result.uri });
+        navigation.navigate("ImageUploaded", { imgUri: result.uri });
     }
     const HandelRendering = () => {
         if (isLoading) {
@@ -69,17 +69,17 @@ export default function BottomSheetUploder(props) {
             )
         }
     }
-        return (
-            <View>
-                {HandelRendering()}
-            </View>
-        );
-    }
-    const styles = StyleSheet.create({
-        camBtn: {
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            padding: 10,
-            borderRadius: 10,
-        },
-    });
+    return (
+        <View>
+            {HandelRendering()}
+        </View>
+    );
+}
+const styles = StyleSheet.create({
+    camBtn: {
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        padding: 10,
+        borderRadius: 10,
+    },
+});

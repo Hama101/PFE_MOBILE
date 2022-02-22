@@ -4,8 +4,8 @@ import { FlatList, SafeAreaView, StatusBar, StyleSheet } from "react-native";
 import Item from './item';
 
 
-export default function Avatars(props) {
-    const [DATA, setData] = useState(props.data.predections);
+export default function Avatars({ navigation, data }) {
+    const [DATA, setData] = useState(data.predections);
     console.log("DATA in avatars --->", DATA);
     // order the data by percentage
     DATA.sort((a, b) => {
@@ -20,8 +20,7 @@ export default function Avatars(props) {
                 item={item}
                 onPress={() => {
                     setSelectedId(item.id);
-                    console.log("props.navigation", props.navigation);
-                    props.navigation.navigate("VedioList", { item: item });
+                    navigation.navigate("VedioList", { item: item });
                 }}
                 backgroundColor={{ backgroundColor }}
                 textColor={{ color }}

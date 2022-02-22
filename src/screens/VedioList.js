@@ -62,61 +62,63 @@ export default function VedioList({ navigation, route }) {
         </View>;
     }
     return (
-        <SafeAreaView style={styles.container}>
-            <TopBtns />
-            <FlatList
-                ref={topRef}
-                data={images}
-                keyExtractor={(item) => item.id.toString()}
-                horizontal
-                pagingEnabled
-                showHorizontalScrollIndicator={false}
-                onMomentumScrollEnd={(event) => {
-                    scrollToActiveIndex(Math.round(event.nativeEvent.contentOffset.x / width));
-                }}
-                renderItem={({ item }) => (
-                    <View style={{ width, height }}>
-                        {
-                            // <Image source={{ uri: item.src.portrait }}
-                            //     style={[StyleSheet.absoluteFillObject]}
-                            // />
-                            <VedioPlayer src={"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"} />
-                        }
-                    </View>
-                )}
-            />
-            <FlatList
-                ref={thumbRef}
-                data={images}
-                keyExtractor={(item) => item.id.toString()}
-                horizontal
-                showHorizontalScrollIndicator={false}
-                style={{
-                    position: 'absolute',
-                    bottom: THUMBNAIL_SIZE / 2,
-                }}
-                contentContainerStyle={{
-                    paddingHorizontal: SPACEING,
-                }}
-                renderItem={({ item, index }) => (
-                    <TouchableOpacity
-                        onPress={() => scrollToActiveIndex(index)}
-                    >
-                        <Image
-                            source={{ uri: item.src.portrait }}
-                            style={{
-                                width: THUMBNAIL_SIZE,
-                                height: THUMBNAIL_SIZE,
-                                borderRadius: 12,
-                                marginRight: SPACEING,
-                                borderWidth: 2,
-                                borderColor: activeIndex === index ? '#fff' : "transparent",
-                            }}
-                        />
-                    </TouchableOpacity>
-                )}
-            />
-        </SafeAreaView >
+        <><TopBtns navigation={navigation} route={route} path="VedioList" />
+            <SafeAreaView style={styles.container}>
+
+                <FlatList
+                    ref={topRef}
+                    data={images}
+                    keyExtractor={(item) => item.id.toString()}
+                    horizontal
+                    pagingEnabled
+                    showHorizontalScrollIndicator={false}
+                    onMomentumScrollEnd={(event) => {
+                        scrollToActiveIndex(Math.round(event.nativeEvent.contentOffset.x / width));
+                    }}
+                    renderItem={({ item }) => (
+                        <View style={{ width, height }}>
+                            {
+                                // <Image source={{ uri: item.src.portrait }}
+                                //     style={[StyleSheet.absoluteFillObject]}
+                                // />
+                                <VedioPlayer src={"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"} />
+                            }
+                        </View>
+                    )}
+                />
+                <FlatList
+                    ref={thumbRef}
+                    data={images}
+                    keyExtractor={(item) => item.id.toString()}
+                    horizontal
+                    showHorizontalScrollIndicator={false}
+                    style={{
+                        position: 'absolute',
+                        bottom: THUMBNAIL_SIZE / 2,
+                    }}
+                    contentContainerStyle={{
+                        paddingHorizontal: SPACEING,
+                    }}
+                    renderItem={({ item, index }) => (
+                        <TouchableOpacity
+                            onPress={() => scrollToActiveIndex(index)}
+                        >
+                            <Image
+                                source={{ uri: item.src.portrait }}
+                                style={{
+                                    width: THUMBNAIL_SIZE,
+                                    height: THUMBNAIL_SIZE,
+                                    borderRadius: 12,
+                                    marginRight: SPACEING,
+                                    borderWidth: 2,
+                                    borderColor: activeIndex === index ? '#fff' : "transparent",
+                                }}
+                            />
+                        </TouchableOpacity>
+                    )}
+                />
+            </SafeAreaView >
+        </>
     )
 }
 

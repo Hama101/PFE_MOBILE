@@ -1,19 +1,24 @@
 import axios from "axios";
 import { BASE_LIVE_URL, BASE_LOCAL_URL } from "./endPoints";
-//set a base url for localhost and heurko than export the axios
-import mime from "mime";
+import * as ImageManipulator from 'expo-image-manipulator';
 
 
 
-// const http = axios.create({
-//     baseURL: BASE_LIVE_URL,
-//     headers: {
-//         'Content-Type': 'multipart/form-data'
-//     }
-// });
+const http = axios.create({
+    baseURL: BASE_LIVE_URL,
+    headers: {
+        'Content-Type': 'multipart/form-data'
+    }
+});
+export default http;
 
-// export default http;
-
+const resizeImage = async (image) => {
+    const manipResult = await ImageManipulator.manipulateAsync(
+        image.localUri || image.uri,
+        [{ resize: { width: image.width * 0.5, height: image.height * 0.5 } }],
+        { compress: 0.7, format: ImageManipulator.SaveFormat.JPEG }
+    );
+}
 const createFormData = (photo) => {
     const data = new FormData();
     const uriParts = photo.uri.split('.');

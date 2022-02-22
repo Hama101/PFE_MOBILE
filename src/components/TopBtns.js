@@ -1,21 +1,21 @@
 import React, { useCallback, useState, useRef, useMemo } from 'react';
-import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Button, TouchableOpacity, } from 'react-native';
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
 import { IconButton, Colors } from 'react-native-paper';
 import * as ImagePicker from 'expo-image-picker';
 import { MotiView } from '@motify/components'
 import LoadingIndicator from '../components/LoadingIndicator';
 import { uploadImage } from '../controllers/axios';
+import { AntDesign, FontAwesome, Entypo } from '@expo/vector-icons';
 
 
-export default function TopBtns() {
-    return (
-        <View style={styles.topBtns}>
-            <IconButton
-                icon="info"
-                size={30}
-                onPress={() => handelButtonClick("camera")}
-                color="#F6F6F6"
+export default function TopBtns({ navigation, route, path }) {
+    console.log("navigation in TopBtns: ", navigation);
+    console.log("route in TopBtns: ", route);
+    console.log("path in TopBtns: ", path);
+    const renderHelpIcon = () => {
+        if (path === "Home") {
+            return (<TouchableOpacity
                 style={{
                     width: 40,
                     height: 40,
@@ -25,12 +25,33 @@ export default function TopBtns() {
                     left: -150,
                     top: 20,
                 }}
-            />
-            <IconButton
-                icon="history"
-                size={30}
-                onPress={() => handelButtonClick("camera")}
-                color="#F6F6F6"
+                onPress={() => navigation.navigate('Help')}
+            >
+                <Entypo name="help" size={24} color="white" />
+            </TouchableOpacity>)
+        }
+        else {
+            return (<TouchableOpacity
+                style={{
+                    width: 40,
+                    height: 40,
+                    alignSelf: 'center',
+                    borderRadius: 100,
+                    //allgin this item to the to right of the screen
+                    left: -150,
+                    top: 20,
+                }}
+                onPress={() => navigation.goBack()}
+            >
+                <AntDesign name="caretleft" size={24} color="white"
+                />
+            </TouchableOpacity >)
+        }
+    }
+    return (
+        <View style={styles.topBtns}>
+            {renderHelpIcon()}
+            <TouchableOpacity
                 style={{
                     width: 40,
                     height: 40,
@@ -40,7 +61,10 @@ export default function TopBtns() {
                     right: -150,
                     top: 20,
                 }}
-            />
+                onPress={() => navigation.navigate('History')}
+            >
+                <FontAwesome name="history" size={24} color="white" />
+            </TouchableOpacity>
         </View>
     )
 }
@@ -52,5 +76,7 @@ const styles = StyleSheet.create({
         top: 0,
         // allgin it child elements to the same line
         flexDirection: 'row',
+        //allgin this item to the center of the screen
+        alignSelf: 'center',
     },
 });

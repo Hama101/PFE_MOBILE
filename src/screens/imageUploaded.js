@@ -1,6 +1,7 @@
 import React, { useCallback, useState, useRef, useMemo } from 'react';
 import { StyleSheet, Text, View, StatusBar, Image, SafeAreaView } from 'react-native';
 import Avatars from '.././components/avatars';
+import TopBtns from '../components/TopBtns';
 
 export default function ImageUploaded({ navigation, route }) {
     const [imgUri, setImageUri] = useState(route.params.imgUri);
@@ -10,13 +11,16 @@ export default function ImageUploaded({ navigation, route }) {
     // create a avatar compeonent
 
     return (
-        <SafeAreaView style={styles.container}>
-            <SafeAreaView style={styles.uploadedImgHoler}>
-                <Image source={{ uri: imgUri }} style={styles.uploadedImg} />
-                <Text style={styles.name}>Our Predictions</Text>
-                <Avatars navigation={navigation} data={data} style={styles.holder} />
-            </SafeAreaView>
-        </SafeAreaView >
+        <>
+            <TopBtns navigation={navigation} route={route} path="ImageUploaded" />
+            <SafeAreaView style={styles.container}>
+                <SafeAreaView style={styles.uploadedImgHoler}>
+                    <Image source={{ uri: imgUri }} style={styles.uploadedImg} />
+                    <Text style={styles.name}>Our Predictions</Text>
+                    <Avatars navigation={navigation} data={data} style={styles.holder} />
+                </SafeAreaView>
+            </SafeAreaView >
+        </>
     )
 }
 

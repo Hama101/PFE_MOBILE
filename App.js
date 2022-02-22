@@ -1,12 +1,18 @@
 import { StyleSheet, SafeAreaView, ImageBackground, Text, View } from 'react-native';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
-import Home from './src/screens/home';
-import ImageUploaded from './src/screens/imageUploaded';
-import VedioList from './src/screens/VedioList';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { enableScreens } from 'react-native-screens';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { IconButton } from 'react-native-paper';
+
+//screens
+import Home from './src/screens/home';
+import ImageUploaded from './src/screens/imageUploaded';
+import VedioList from './src/screens/VedioList';
+import History from './src/screens/History';
+import Help from './src/screens/Help';
+//end screens
+
 
 const bgImage = require('./assets/bg.jpg');
 const Stack = createNativeStackNavigator()
@@ -34,6 +40,8 @@ export default function App() {
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="ImageUploaded" component={ImageUploaded} />
           <Stack.Screen name="VedioList" component={VedioList} options={{ orientation: 'all' }} />
+          <Stack.Screen name="History" component={History} />
+          <Stack.Screen name="Help" component={Help} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>

@@ -10,25 +10,9 @@ import TopBtns from '../components/TopBtns';
 const CAMBTNWID = 150;
 const GALBTNWID = 60;
 
-export default function Home(navigation) {
+export default function Home({ navigation, route }) {
     const [isLoading, setIsLoading] = useState(false);
 
-    // const handelUpload = (file) => {
-    //     console.log("uploading...", img);
-    //     setIsLoading(true);
-    //     const formdata = new FormData();
-    //     formdata.append('file', file);
-    //     return http.post('/predict', formdata
-    //     ).then(res => {
-    //         setIsLoading(true);
-    //         console.log(res);
-    //     }).catch(err => {
-    //         setIsLoading(true);
-    //         console.log(err);
-    //     })
-    //     // navigation.navigation.navigate('ImageUploaded', { imgUri: file.uri })
-    // }
-    //display loading animation
     const handelRendering = () => {
         if (isLoading) {
             return <LoadingIndicator size={100} />;
@@ -67,7 +51,7 @@ export default function Home(navigation) {
             let response = await uploadImage(result);
             setIsLoading(false);
             if (response) {
-                navigation.navigation.navigate('ImageUploaded', { imgUri: result.uri, data: response })
+                navigation.navigate('ImageUploaded', { imgUri: result.uri, data: response })
             }
         } else {
             console.log("cancelled");
@@ -77,7 +61,7 @@ export default function Home(navigation) {
     const RenderBtns = () => {
         return (
             <>
-                <TopBtns />
+                <TopBtns navigation={navigation} route={route} path="Home" />
                 <View style={styles.container}>
                     <MotiView
                         from={{
