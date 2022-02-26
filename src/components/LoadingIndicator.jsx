@@ -24,7 +24,7 @@ var animation = [
 ]
 export default function LoadingIndicator({ size }) {
     // set a state for the animationindex than with useEffect will set the index to a randoom number between 0 and and the animation length
-    const [animationIndex, setAnimationIndex] = useState(Math.floor((Math.random() * animation.length) + 1));
+    const [animationIndex, setAnimationIndex] = useState(Math.floor((Math.random() * animation.length)));
     console.log("aaa---->", animationIndex)
 
     return (
