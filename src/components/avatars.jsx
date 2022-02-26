@@ -1,8 +1,7 @@
 // create a cool looking avatar list like in discord
 import React, { useState } from "react";
 import { FlatList, SafeAreaView, StatusBar, StyleSheet } from "react-native";
-import Item from './item';
-
+import Item from "./item";
 
 export default function Avatars({ navigation, data }) {
     const [DATA, setData] = useState(data.predections);
@@ -14,13 +13,13 @@ export default function Avatars({ navigation, data }) {
     const [selectedId, setSelectedId] = useState(null);
     const renderItem = ({ item }) => {
         const backgroundColor = item.id === selectedId ? "gray" : "transparent";
-        const color = item.id === selectedId ? 'transparent' : 'black';
+        const color = item.id === selectedId ? "transparent" : "black";
         return (
             <Item
                 item={item}
                 onPress={() => {
                     setSelectedId(item.id);
-                    navigation.navigate("VedioList", { item: item });
+                    navigation.navigate("RecipesList", { item: item });
                 }}
                 backgroundColor={{ backgroundColor }}
                 textColor={{ color }}
@@ -36,13 +35,13 @@ export default function Avatars({ navigation, data }) {
                 extraData={selectedId}
             />
         </SafeAreaView>
-    )
+    );
 }
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        height: '100%',
-        width: '100%',
+        height: "100%",
+        width: "100%",
         marginTop: StatusBar.currentHeight || 0,
     },
 });

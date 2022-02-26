@@ -8,6 +8,7 @@ import { IconButton } from 'react-native-paper';
 //screens
 import Home from './src/screens/home';
 import ImageUploaded from './src/screens/imageUploaded';
+import RecipesList from './src/screens/RecipesList';
 import VedioList from './src/screens/VedioList';
 import History from './src/screens/History';
 import Help from './src/screens/Help';
@@ -39,6 +40,7 @@ export default function App() {
         }}>
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="ImageUploaded" component={ImageUploaded} />
+          <Stack.Screen name="RecipesList" component={RecipesList} />
           <Stack.Screen name="VedioList" component={VedioList} options={{ orientation: 'all' }} />
           <Stack.Screen name="History" component={History} />
           <Stack.Screen name="Help" component={Help} />

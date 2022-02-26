@@ -1,7 +1,6 @@
 // create a cool looking avatar list like in discord
 import React, { useState } from "react";
 import { FlatList, SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, Dimensions, View, Image } from "react-native";
-import UserAvatar from 'react-native-user-avatar';
 import Progress from './ProgressBar';
 
 const { width } = Dimensions.get("window");

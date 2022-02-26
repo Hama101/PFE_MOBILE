@@ -12,30 +12,34 @@ const http = axios.create({
 });
 export default http;
 
+//this used to resize image
 const resizeImage = async (image) => {
     const manipResult = await ImageManipulator.manipulateAsync(
         image.localUri || image.uri,
         [{ resize: { width: image.width * 0.5, height: image.height * 0.5 } }],
         { compress: 0.7, format: ImageManipulator.SaveFormat.JPEG }
     );
+    return manipResult;
 }
-const createFormData = (photo) => {
+
+// creating the form data with rezized images
+const createFormData = async (photo) => {
     const data = new FormData();
-    const uriParts = photo.uri.split('.');
+    const resizedPhoto = await resizeImage(photo);
+    const uriParts = resizedPhoto.uri.split('.');
     const fileType = uriParts[uriParts.length - 1];
-
+    console.log("uploading the image : ", resizedPhoto);
     data.append('file', {
-        name: photo.name || photo.uri.split('/').pop(),
+        name: resizedPhoto.name || resizedPhoto.uri.split('/').pop(),
         type: `image/${fileType}`,
-        uri: Platform.OS === 'ios' ? photo.uri.replace('file://', '') : photo.uri,
+        uri: Platform.OS === 'ios' ? resizedPhoto.uri.replace('file://', '') : resizedPhoto.uri,
     });
-
     return data;
 };
 
 
 export const uploadImage = async (file) => {
-    const formData = createFormData(file);
+    const formData = await createFormData(file);
     console.log("uploading...", formData);
     const config = {
         headers: {

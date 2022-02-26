@@ -1,36 +1,38 @@
 import React, { useCallback, useState, useRef, useMemo } from 'react';
 import { StyleSheet, Dimensions, View, StatusBar, Image, SafeAreaView, TouchableOpacity, FlatList } from 'react-native';
-import LoadingIndicator from '.././components/LoadingIndicator';
+import LoadingIndicator from '../components/LoadingIndicator';
 import VedioPlayer from '../components/VedioPlayer';
 const { width, height } = Dimensions.get('screen')
 import TopBtns from '../components/TopBtns';
-//fetching images or vedio from api
-const vid_url = "https://www.pexels.com/video/food-pizza-hands-friends-3944334/"
-const fetchData = async (keyword) => {
-    const API_ROUTE = `https://api.pexels.com/v1/search?query=${keyword}&page=1`
-    console.log("API_ROUTE", API_ROUTE);
-    const data = await fetch(API_ROUTE, {
+
+
+const fetchData = async (url) => {
+    const res = await fetch('https://sea-of-food.herokuapp.com/recipe-details', {
+        method: 'POST',
         headers: {
-            "Authorization": "563492ad6f91700001000001d7c45d66b0234c40b22ae183667ad5b5"
-        }
-    })
-    const { photos } = await data.json()
-    return photos.slice(0, 6)
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            url: url
+        })
+    });
+    const data = await res.json();
+    return data;
 }
 const THUMBNAIL_SIZE = 80;
 const SPACEING = 10;
 
 export default function VedioList({ navigation, route }) {
-
-    const item = route.params.item
-    const [images, setImages] = useState(null)
+    const [DATA, setData] = useState(null);
+    const [images, setImages] = useState(null);
+    console.log("the data is : ", DATA);
     React.useEffect(() => {
-        const fetchImages = async () => {
-            const images = await fetchData(item.name);
-            //console.log("************************************\n************************\n*********\n", images);
-            setImages(images)
+        const getData = async () => {
+            const data = await fetchData(route.params.url);
+            setData(data.data);
+            setImages(data.data.images);
         }
-        fetchImages();
+        getData();
     }, [])
     //console.log('route: ', item);
 
@@ -68,7 +70,7 @@ export default function VedioList({ navigation, route }) {
                 <FlatList
                     ref={topRef}
                     data={images}
-                    keyExtractor={(item) => item.id.toString()}
+                    keyExtractor={(item) => item.substring(item.length - 20)}
                     horizontal
                     pagingEnabled
                     showHorizontalScrollIndicator={false}
@@ -78,10 +80,10 @@ export default function VedioList({ navigation, route }) {
                     renderItem={({ item }) => (
                         <View style={{ width, height }}>
                             {
-                                // <Image source={{ uri: item.src.portrait }}
-                                //     style={[StyleSheet.absoluteFillObject]}
-                                // />
-                                <VedioPlayer src={"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"} />
+                                <Image source={{ uri: item }}
+                                    style={[StyleSheet.absoluteFillObject]}
+                                />
+                                // <VedioPlayer src={"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"} />
                             }
                         </View>
                     )}
@@ -89,7 +91,7 @@ export default function VedioList({ navigation, route }) {
                 <FlatList
                     ref={thumbRef}
                     data={images}
-                    keyExtractor={(item) => item.id.toString()}
+                    keyExtractor={(item) => item.substring(item.length - 20)}
                     horizontal
                     showHorizontalScrollIndicator={false}
                     style={{
@@ -104,7 +106,7 @@ export default function VedioList({ navigation, route }) {
                             onPress={() => scrollToActiveIndex(index)}
                         >
                             <Image
-                                source={{ uri: item.src.portrait }}
+                                source={{ uri: item }}
                                 style={{
                                     width: THUMBNAIL_SIZE,
                                     height: THUMBNAIL_SIZE,

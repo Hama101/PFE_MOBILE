@@ -1,6 +1,6 @@
 import React, { useCallback, useState, useRef, useMemo } from 'react';
 import { StyleSheet, Text, View, StatusBar, Image, SafeAreaView } from 'react-native';
-import Avatars from '.././components/avatars';
+import Avatars from '../components/avatars';
 import TopBtns from '../components/TopBtns';
 
 export default function ImageUploaded({ navigation, route }) {

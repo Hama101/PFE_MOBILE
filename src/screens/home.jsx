@@ -7,6 +7,7 @@ import { MotiView } from '@motify/components'
 import LoadingIndicator from '../components/LoadingIndicator';
 import { uploadImage } from '../controllers/axios';
 import TopBtns from '../components/TopBtns';
+
 const CAMBTNWID = 150;
 const GALBTNWID = 60;
 

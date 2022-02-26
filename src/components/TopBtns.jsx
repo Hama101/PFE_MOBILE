@@ -4,7 +4,7 @@ import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
 import { IconButton, Colors } from 'react-native-paper';
 import * as ImagePicker from 'expo-image-picker';
 import { MotiView } from '@motify/components'
-import LoadingIndicator from '../components/LoadingIndicator';
+import LoadingIndicator from './LoadingIndicator';
 import { uploadImage } from '../controllers/axios';
 import { AntDesign, FontAwesome, Entypo } from '@expo/vector-icons';
 
