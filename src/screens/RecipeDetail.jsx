@@ -1,14 +1,17 @@
 import React, { useState, useRef, useMemo } from 'react';
 import { StyleSheet, Text, Image, SafeAreaView } from 'react-native';
 import TopBtns from '../components/TopBtns';
+import { Entypo } from '@expo/vector-icons';
 
-export default function Help({ navigation, route }) {
+
+export default function RecipeDetail({ navigation, route }) {
+    const [recipe, setRecipe] = useState(route.params.recipe);
 
     return (
         <>
-            <TopBtns navigation={navigation} route={route} path="Help" />
+            <TopBtns navigation={navigation} route={route} path="RecipeDetail" />
             <SafeAreaView style={styles.container}>
-                <Text style={styles.text}>Help</Text>
+                <Text style={styles.text}>{recipe.name}</Text>
             </SafeAreaView >
         </>
     )

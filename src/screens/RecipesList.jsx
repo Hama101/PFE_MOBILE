@@ -3,7 +3,8 @@ import { StyleSheet, Text, View, StatusBar, Image, SafeAreaView } from 'react-na
 import List from '../components/List';
 import TopBtns from '../components/TopBtns';
 import LoadingIndicator from '../components/LoadingIndicator';
-
+// we need to change the recipe list and the recipe details and the vedio list to consume DJANGO API
+import { httpAPI } from '../controllers/axios';
 
 //data fetching section
 const fetchData = async (keyword) => {

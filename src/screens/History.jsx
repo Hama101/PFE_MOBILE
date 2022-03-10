@@ -6,7 +6,7 @@ export default function History({ navigation, route }) {
 
     return (
         <>
-            <TopBtns navigation={navigation} route={route} path="ImageUploaded" />
+            <TopBtns navigation={navigation} route={route} path="History" />
             <SafeAreaView style={styles.container}>
                 <Text style={styles.text}>History</Text>
             </SafeAreaView >

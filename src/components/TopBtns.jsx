@@ -9,11 +9,8 @@ import { uploadImage } from '../controllers/axios';
 import { AntDesign, FontAwesome, Entypo } from '@expo/vector-icons';
 
 
-export default function TopBtns({ navigation, route, path }) {
-    console.log("navigation in TopBtns: ", navigation);
-    console.log("route in TopBtns: ", route);
-    console.log("path in TopBtns: ", path);
-    const renderHelpIcon = () => {
+export default function TopBtns({ navigation, route, path, data }) {
+    const renderLeftIcon = () => {
         if (path === "Home") {
             return (<TouchableOpacity
                 style={{
@@ -30,7 +27,7 @@ export default function TopBtns({ navigation, route, path }) {
                 <Entypo name="help" size={24} color="white" />
             </TouchableOpacity>)
         }
-        else {
+        if (path === "Home") {
             return (<TouchableOpacity
                 style={{
                     width: 40,
@@ -41,17 +38,31 @@ export default function TopBtns({ navigation, route, path }) {
                     left: -150,
                     top: 20,
                 }}
-                onPress={() => navigation.goBack()}
+                onPress={() => navigation.navigate('Help')}
             >
-                <AntDesign name="caretleft" size={24} color="white"
-                />
-            </TouchableOpacity >)
+                <Entypo name="help" size={24} color="white" />
+            </TouchableOpacity>)
         }
+
+        return (<TouchableOpacity
+            style={{
+                width: 40,
+                height: 40,
+                alignSelf: 'center',
+                borderRadius: 100,
+                //allgin this item to the to right of the screen
+                left: -150,
+                top: 20,
+            }}
+            onPress={() => navigation.goBack()}
+        >
+            <AntDesign name="caretleft" size={24} color="white"
+            />
+        </TouchableOpacity >)
     }
-    return (
-        <View style={styles.topBtns}>
-            {renderHelpIcon()}
-            <TouchableOpacity
+    const renderRightIcon = () => {
+        if (path === "VedioList") {
+            return (<TouchableOpacity
                 style={{
                     width: 40,
                     height: 40,
@@ -61,10 +72,46 @@ export default function TopBtns({ navigation, route, path }) {
                     right: -150,
                     top: 20,
                 }}
-                onPress={() => navigation.navigate('History')}
+                onPress={() => navigation.navigate('RecipeDetail', { recipe: data })}
             >
-                <FontAwesome name="history" size={24} color="white" />
-            </TouchableOpacity>
+                <AntDesign name="infocirlce" size={24} color="white" />
+            </TouchableOpacity>)
+        }
+        if (path === "RecipeDetail") {
+            return (<TouchableOpacity
+                style={{
+                    width: 40,
+                    height: 40,
+                    alignSelf: 'center',
+                    borderRadius: 100,
+                    //allgin this item to the to right of the screen
+                    right: -150,
+                    top: 20,
+                }}
+                onPress={() => alert("saving this recipe to your history")}
+            >
+                <Entypo name="save" size={24} color="white" />
+            </TouchableOpacity>)
+        }
+        return <TouchableOpacity
+            style={{
+                width: 40,
+                height: 40,
+                alignSelf: 'center',
+                borderRadius: 100,
+                //allgin this item to the to right of the screen
+                right: -150,
+                top: 20,
+            }}
+            onPress={() => navigation.navigate('History')}
+        >
+            <FontAwesome name="history" size={24} color="white" />
+        </TouchableOpacity>
+    }
+    return (
+        <View style={styles.topBtns}>
+            {renderLeftIcon()}
+            {renderRightIcon()}
         </View>
     )
 }

@@ -25,12 +25,22 @@ const SPACEING = 10;
 export default function VedioList({ navigation, route }) {
     const [DATA, setData] = useState(null);
     const [images, setImages] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+
     console.log("the data is : ", DATA);
     React.useEffect(() => {
         const getData = async () => {
-            const data = await fetchData(route.params.url);
-            setData(data.data);
-            setImages(data.data.images);
+            setIsLoading(true);
+            try {
+                const data = await fetchData(route.params.url);
+                setData(data.data);
+                setImages(data.data.images);
+                setIsLoading(false);
+            } catch (err) {
+                setIsLoading(false);
+                alert("error");
+                navigation.goBack();
+            }
         }
         getData();
     }, [])
@@ -57,16 +67,16 @@ export default function VedioList({ navigation, route }) {
         }
     }
 
-    if (!images) {
+    if (isLoading || !DATA) {
         // allign the item to the center of the screen
         return <View style={styles.container}>
             <LoadingIndicator size={150} style={styles.loder} />
         </View>;
     }
     return (
-        <><TopBtns navigation={navigation} route={route} path="VedioList" />
+        <>
+            <TopBtns navigation={navigation} route={route} path="VedioList" data={DATA} />
             <SafeAreaView style={styles.container}>
-
                 <FlatList
                     ref={topRef}
                     data={images}

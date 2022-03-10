@@ -5,7 +5,7 @@ import Item from "./item";
 
 export default function Avatars({ navigation, data }) {
     const [DATA, setData] = useState(data.predections);
-    console.log("DATA in avatars --->", DATA);
+
     // order the data by percentage
     DATA.sort((a, b) => {
         return b.percentage - a.percentage;

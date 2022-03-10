@@ -6,7 +6,6 @@ import ListItem from "./ListItem";
 export default function List({ navigation, data, name }) {
     const [DATA, setData] = useState(data.data);
 
-    console.log("DATA in List --->", DATA);
     // order the data by percentage
     const [selectedId, setSelectedId] = useState(null);
     const renderItem = ({ item }) => {

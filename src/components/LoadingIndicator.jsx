@@ -5,27 +5,17 @@ import LottieView from 'lottie-react-native';
 
 var animation = [
     require('../../assets/animations/loading1.json'),
+    require('../../assets/animations/loading2.json'),
     require('../../assets/animations/loading3.json'),
     require('../../assets/animations/loading4.json'),
     require('../../assets/animations/loading5.json'),
     require('../../assets/animations/loading6.json'),
     require('../../assets/animations/loading7.json'),
-    require('../../assets/animations/loading8.json'),
-    require('../../assets/animations/loading9.json'),
-    require('../../assets/animations/loading10.json'),
-    require('../../assets/animations/loading11.json'),
-    require('../../assets/animations/loading12.json'),
-    require('../../assets/animations/loading13.json'),
-    require('../../assets/animations/loading14.json'),
-    require('../../assets/animations/loading15.json'),
-    require('../../assets/animations/loading16.json'),
-    require('../../assets/animations/loading17.json'),
     //....
 ]
 export default function LoadingIndicator({ size }) {
     // set a state for the animationindex than with useEffect will set the index to a randoom number between 0 and and the animation length
     const [animationIndex, setAnimationIndex] = useState(Math.floor((Math.random() * animation.length)));
-    console.log("aaa---->", animationIndex)
 
     return (
         <LottieView

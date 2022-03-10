@@ -17,12 +17,10 @@ export default function BottomSheetUploder({ navigation, route }) {
     //display loading animation
     const handleLoading = () => {
         setIsLoading(true);
-        console.log("loading...");
         setTimeout(() => {
             setIsLoading(false);
         }, 5000);
     };
-    console.log("aaaa", navigation);
     const handelButtonClick = async (type) => {
         let result;
         if (type === "Camera") {
@@ -40,7 +38,6 @@ export default function BottomSheetUploder({ navigation, route }) {
                 quality: 1,
             });
         }
-        console.log(result);
         handleLoading();
         // godwa rak wsalit lil navigation xD !!!
         navigation.navigate("ImageUploaded", { imgUri: result.uri });
