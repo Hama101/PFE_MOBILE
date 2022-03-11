@@ -86,7 +86,7 @@ export default function Home({ navigation, route }) {
                             repeatReverse: true,
                         }}
                         style={{
-                            backgroundColor: '#404EED',
+                            backgroundColor: '#f08d02',
                             borderRadius: 150,
                             borderWidth: 2,
                             borderColor: Colors.white,
@@ -101,7 +101,7 @@ export default function Home({ navigation, route }) {
                                 icon="camera"
                                 size={50}
                                 onPress={() => handelButtonClick("camera")}
-                                color="#F6F6F6"
+                                color="white"
                                 style={{
                                     width: 150,
                                     height: 150,
@@ -113,7 +113,6 @@ export default function Home({ navigation, route }) {
                         </TouchableOpacity>
                     </MotiView>
                     <IconButton
-                        style={styles.btnGalContainer}
                         icon="folder"
                         size={40}
                         onPress={() => handelButtonClick("gallery")}

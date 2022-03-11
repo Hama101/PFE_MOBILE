@@ -1,7 +1,7 @@
 // create a cool looking avatar list like in discord
 import React, { useState } from "react";
 import { FlatList, SafeAreaView, StatusBar, StyleSheet } from "react-native";
-import Item from "./item";
+import Item from "./Item";
 
 export default function Avatars({ navigation, data }) {
     const [DATA, setData] = useState(data.predections);

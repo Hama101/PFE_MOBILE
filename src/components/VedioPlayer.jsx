@@ -16,10 +16,10 @@ export default function VedioPlayer({ src }) {
     }, [])
 
     return (
-        <View style={[StyleSheet.absoluteFillObject], styles.container}>
+        <View style={[StyleSheet.absoluteFillObject]}>
             <Video
                 ref={video}
-                style={[StyleSheet.absoluteFillObject], styles.video}
+                style={[StyleSheet.absoluteFillObject]}
                 source={{
                     uri: src,
                 }}

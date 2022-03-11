@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BASE_LIVE_URL, BASE_LOCAL_URL, } from "./endPoints";
+import { BASE_LIVE_URL, BASE_LOCAL_URL, BASE_API_URL } from "./endPoints";
 import * as ImageManipulator from 'expo-image-manipulator';
 
 
@@ -56,7 +56,7 @@ export const uploadImage = async (file) => {
     };
     try {
         //upload using fetchAPI
-        const response = await fetch(`${BASE_LIVE_URL}/predict`, {
+        const response = await fetch(`${BASE_LIVE_URL}/api/v1/predict`, {
             method: 'POST',
             body: formData,
             ...config

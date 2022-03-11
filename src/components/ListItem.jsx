@@ -1,5 +1,6 @@
 // create a cool looking avatar list like in discord
 import { StyleSheet, Text, TouchableOpacity, StatusBar, Dimensions, View, Image } from "react-native";
+import Heart from "./Heart";
 
 
 const { width } = Dimensions.get("window");
@@ -13,8 +14,9 @@ export default function ListItem({ item, onPress, backgroundColor, textColor }) 
         <View>
             <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
                 <Image style={styles.card} source={{ uri: item.thumbnail }} />
-                <View >
+                <View style={styles.infos}>
                     <Text style={styles.info}>{item.title}</Text>
+                    <Heart likes={item.rating} />
                 </View>
             </TouchableOpacity>
         </View>
@@ -50,5 +52,12 @@ const styles = StyleSheet.create({
         marginTop: 5,
         color: '#fff',
         alignSelf: 'center',
+    },
+    infos: {
+        //algin it chile elements on the same line
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        padding: 10,
+        borderRadius: 10,
     },
 });

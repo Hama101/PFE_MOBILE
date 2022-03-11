@@ -1,15 +1,39 @@
-import React, { useCallback, useState, useRef, useMemo } from 'react';
-import { StyleSheet, Text, View, Button, TouchableOpacity, } from 'react-native';
-import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
-import { IconButton, Colors } from 'react-native-paper';
-import * as ImagePicker from 'expo-image-picker';
-import { MotiView } from '@motify/components'
-import LoadingIndicator from './LoadingIndicator';
-import { uploadImage } from '../controllers/axios';
+import React from 'react';
+import { StyleSheet, View, TouchableOpacity, } from 'react-native';
+
 import { AntDesign, FontAwesome, Entypo } from '@expo/vector-icons';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export default function TopBtns({ navigation, route, path, data }) {
+
+    const handelSave = async () => {
+        try {
+            const recipes = await AsyncStorage.getItem('recipes');
+            let savedRecipes;
+            if (recipes) {
+                savedRecipes = await JSON.parse(recipes);
+            } else {
+                savedRecipes = [];
+            }
+            //check if the recipe is already saved
+            const isSaved = savedRecipes.find(recipe => recipe.name === data.name);
+            console.log("cheking is saved :", isSaved);
+            if (isSaved) {
+                alert("This recipe is already saved");
+            } else {
+                savedRecipes.push(data);
+                await AsyncStorage.setItem('recipes', JSON.stringify(savedRecipes));
+                alert("Recipes saved successfully");
+                navigation.navigate("History");
+            }
+
+        } catch (error) {
+            // create item recipes
+            await AsyncStorage.setItem('recipes', JSON.stringify([data]));
+        }
+    }
     const renderLeftIcon = () => {
         if (path === "Home") {
             return (<TouchableOpacity
@@ -88,7 +112,7 @@ export default function TopBtns({ navigation, route, path, data }) {
                     right: -150,
                     top: 20,
                 }}
-                onPress={() => alert("saving this recipe to your history")}
+                onPress={() => handelSave()}
             >
                 <Entypo name="save" size={24} color="white" />
             </TouchableOpacity>)

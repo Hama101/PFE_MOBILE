@@ -2,9 +2,9 @@ import React, { useCallback, useState, useRef, useMemo } from 'react';
 import { StyleSheet, Dimensions, View, StatusBar, Image, SafeAreaView, TouchableOpacity, FlatList } from 'react-native';
 import LoadingIndicator from '../components/LoadingIndicator';
 import VedioPlayer from '../components/VedioPlayer';
-const { width, height } = Dimensions.get('screen')
 import TopBtns from '../components/TopBtns';
 
+const { width, height } = Dimensions.get('screen')
 
 const fetchData = async (url) => {
     const res = await fetch('https://sea-of-food.herokuapp.com/recipe-details', {

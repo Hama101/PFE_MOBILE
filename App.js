@@ -33,7 +33,7 @@ const MyTheme = {
 //config for the screen transcations animations
 //customTransition to create an animations while changing between screens
 const customTransition = {
-  gestureEnabled: true,
+  gestureEnabled: false,
   gestureDirection: 'horizontal',
   transitionSpec: {
     open: TransitionSpecs.TransitionIOSSpec,
@@ -69,7 +69,7 @@ const customTransition = {
   }
 }
 const screenOptions = {
-  gestureEnabled: true,
+  gestureEnabled: false,
   gestureDirection: 'horizontal',
   headerMode: 'none',
 }
